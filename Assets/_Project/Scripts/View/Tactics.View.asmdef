@@ -1,0 +1,19 @@
+{
+    "name": "Tactics.View",
+    "rootNamespace": "Tactics.View",
+    "references": [
+        "Tactics.Core",
+        "Tactics.Data",
+        "Unity.InputSystem",
+        "Unity.Cinemachine"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

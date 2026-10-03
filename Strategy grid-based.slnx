@@ -1,0 +1,9 @@
+﻿<Solution>
+  <Project Path="Tactics.Tests.EditMode.csproj" />
+  <Project Path="Tactics.Data.csproj" />
+  <Project Path="Tactics.View.csproj" />
+  <Project Path="Tactics.Core.csproj" />
+  <Project Path="Assembly-CSharp-Editor.csproj" />
+  <Project Path="Tactics.Editor.csproj" />
+  <Project Path="Assembly-CSharp.csproj" />
+</Solution>

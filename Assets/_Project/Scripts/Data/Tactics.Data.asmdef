@@ -1,0 +1,16 @@
+{
+    "name": "Tactics.Data",
+    "rootNamespace": "Tactics.Data",
+    "references": [
+        "Tactics.Core"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
