@@ -1,6 +1,6 @@
-id,name,moveCost,passable,defense,avoid,color
-P,Plain,1,TRUE,0,0,#8DB360
-F,Forest,2,TRUE,1,20,#3E6B35
-H,Hill,2,TRUE,1,10,#A68A5B
-M,Mountain,3,TRUE,2,30,#7D7068
-W,Water,0,FALSE,0,0,#3D7CC9
+id,name,moveCost,passable,flyable,defense,avoid,color
+P,Plain,1,TRUE,TRUE,0,0,#8DB360
+F,Forest,2,TRUE,TRUE,1,20,#3E6B35
+H,Hill,2,TRUE,TRUE,1,10,#A68A5B
+M,Mountain,3,TRUE,TRUE,2,30,#7D7068
+W,Water,1,FALSE,TRUE,0,0,#3D7CC9

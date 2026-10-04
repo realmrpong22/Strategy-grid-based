@@ -164,6 +164,8 @@ MonoBehaviour:
   _highlightRenderer: {fileID: 6926487867662159534}
   _hoverMaterial: {fileID: 2100000, guid: fed3222e0f5141c4f87e1eb646d475e2, type: 2}
   _selectedMaterial: {fileID: 2100000, guid: 405b069652498404e868916159a0427b, type: 2}
+  _moveRangeMaterial: {fileID: 2100000, guid: ef5b54fcbb39b14438ff6414d161523c, type: 2}
+  _enemyRangeMaterial: {fileID: 2100000, guid: ad779c985a58e2e47935f62514d497c5, type: 2}
 --- !u!1 &9013995903276374619
 GameObject:
   m_ObjectHideFlags: 0

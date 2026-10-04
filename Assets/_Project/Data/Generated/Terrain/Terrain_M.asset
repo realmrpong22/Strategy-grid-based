@@ -16,6 +16,7 @@ MonoBehaviour:
   _displayName: Mountain
   _moveCost: 3
   _isPassable: 1
+  _isFlyable: 1
   _defenseBonus: 2
   _avoidBonus: 30
   _color: {r: 0.49019608, g: 0.4392157, b: 0.40784314, a: 1}

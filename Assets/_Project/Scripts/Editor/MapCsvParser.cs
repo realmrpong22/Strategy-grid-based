@@ -87,7 +87,7 @@ namespace Tactics.Editor
                     continue;
                 }
 
-                int z = depth - 1 - r; // sheet row 1 is the far edge of the map
+                int z = SheetRowToZ(r, depth);
                 for (int x = 0; x < width; x++)
                 {
                     string cell = x < rows[r].Length ? rows[r][x].Trim() : string.Empty;
@@ -153,5 +153,47 @@ namespace Tactics.Editor
                 letters.Insert(0, (char)('A' + (n - 1) % 26));
             return letters.Append(row + 1).ToString();
         }
+
+        /// <summary>Inverse of CellName: "AB5" → (27, 4). Letters are case-insensitive; row must be 1 or more.</summary>
+        public static bool TryParseCellName(string cell, out int column, out int row)
+        {
+            column = -1;
+            row = -1;
+            if (string.IsNullOrEmpty(cell))
+                return false;
+
+            int split = 0;
+            int columnNumber = 0;
+            while (split < cell.Length && char.IsLetter(cell[split]))
+            {
+                char letter = char.ToUpperInvariant(cell[split]);
+                if (letter < 'A' || letter > 'Z')
+                    return false;
+                columnNumber = columnNumber * 26 + (letter - 'A' + 1);
+                if (columnNumber > 16384) // spreadsheet maximum (XFD); also stops overflow
+                    return false;
+                split++;
+            }
+            if (split == 0 || split == cell.Length)
+                return false;
+
+            for (int i = split; i < cell.Length; i++)
+            {
+                if (cell[i] < '0' || cell[i] > '9')
+                    return false;
+            }
+            if (!int.TryParse(cell.Substring(split), NumberStyles.None, CultureInfo.InvariantCulture, out int rowNumber)
+                || rowNumber < 1)
+                return false;
+
+            column = columnNumber - 1;
+            row = rowNumber - 1;
+            return true;
+        }
+
+        /// <summary>
+        /// Map z for a zero-based sheet row. Sheet row 1 is the far edge (max z); the one place this flip lives.
+        /// </summary>
+        public static int SheetRowToZ(int sheetRow, int depth) => depth - 1 - sheetRow;
     }
 }

@@ -1,0 +1,10 @@
+faction,class,cell
+Player,Soldier,E10
+Player,Knight,F9
+Player,Cavalier,G10
+Player,PegasusKnight,D9
+Enemy,Soldier,F1
+Enemy,Soldier,H2
+Enemy,Cavalier,E2
+Enemy,Knight,G1
+Enemy,PegasusKnight,I4

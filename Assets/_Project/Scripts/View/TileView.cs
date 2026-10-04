@@ -19,6 +19,8 @@ namespace Tactics.View
         [SerializeField] private MeshRenderer _highlightRenderer;
         [SerializeField] private Material _hoverMaterial;
         [SerializeField] private Material _selectedMaterial;
+        [SerializeField] private Material _moveRangeMaterial;
+        [SerializeField] private Material _enemyRangeMaterial;
 
         public Tile Tile { get; private set; }
         public Vector2Int Position => Tile.Position;
@@ -47,6 +49,8 @@ namespace Tactics.View
             {
                 TileHighlight.Hover => _hoverMaterial,
                 TileHighlight.Selected => _selectedMaterial,
+                TileHighlight.MoveRange => _moveRangeMaterial,
+                TileHighlight.EnemyRange => _enemyRangeMaterial,
                 _ => null,
             };
 

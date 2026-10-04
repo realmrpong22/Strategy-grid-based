@@ -1,0 +1,5 @@
+id,name,maxHp,move,jump,flies,color
+Soldier,Soldier,20,5,1,FALSE,#B8B8B8
+Knight,Knight,26,4,0,FALSE,#6E7B8B
+Cavalier,Cavalier,22,7,1,FALSE,#B07A4A
+PegasusKnight,Pegasus Knight,18,7,0,TRUE,#E6E6FF

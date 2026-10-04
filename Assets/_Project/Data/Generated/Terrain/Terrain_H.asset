@@ -16,6 +16,7 @@ MonoBehaviour:
   _displayName: Hill
   _moveCost: 2
   _isPassable: 1
+  _isFlyable: 1
   _defenseBonus: 1
   _avoidBonus: 10
   _color: {r: 0.6509804, g: 0.5411765, b: 0.35686275, a: 1}

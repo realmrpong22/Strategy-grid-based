@@ -1,4 +1,3 @@
-using Tactics.Core;
 using Tactics.Data;
 using UnityEngine;
 
@@ -10,26 +9,31 @@ namespace Tactics.View
     /// </summary>
     public sealed class GameBootstrap : MonoBehaviour
     {
-        [SerializeField] private MapData _mapData;
+        [Tooltip("Map plus starting units. The map comes from the deployment.")]
+        [SerializeField] private DeploymentData _deployment;
         [SerializeField] private GridView _gridView;
+        [SerializeField] private UnitsView _unitsView;
+        [SerializeField] private SelectionController _selectionController;
 
         // Start, not Awake: every view has finished its own Awake setup by now.
         private void Start()
         {
-            if (_mapData == null || _gridView == null)
+            if (_deployment == null || _gridView == null || _unitsView == null || _selectionController == null)
             {
-                Debug.LogError("[Tactics] GameBootstrap needs a MapData and a GridView assigned.", this);
+                Debug.LogError("[Tactics] GameBootstrap needs a DeploymentData, GridView, UnitsView and SelectionController assigned.", this);
                 return;
             }
 
-            GridBuildResult result = _mapData.BuildGrid();
+            BattleBuildResult result = _deployment.BuildBattle();
             if (!result.Success)
             {
-                Debug.LogError($"[Tactics] {_mapData.name} failed to build:\n{string.Join("\n", result.Errors)}", _mapData);
+                Debug.LogError($"[Tactics] {_deployment.name} failed to build:\n{string.Join("\n", result.Errors)}", _deployment);
                 return;
             }
 
-            _gridView.Build(result.Map, _mapData);
+            _gridView.Build(result.Battle.Map, _deployment.Map);
+            _unitsView.Build(result.Battle, _deployment);
+            _selectionController.Initialize(result.Battle);
         }
     }
 }

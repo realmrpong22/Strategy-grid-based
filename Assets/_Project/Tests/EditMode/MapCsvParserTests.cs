@@ -114,5 +114,40 @@ namespace Tactics.Tests.EditMode
         {
             Assert.AreEqual(expected, MapCsvParser.CellName(column, row));
         }
+
+        [TestCase("A1", 0, 0)]
+        [TestCase("z1", 25, 0)]
+        [TestCase("AA5", 26, 4)]
+        [TestCase("ab10", 27, 9)]
+        public void TryParseCellName_RoundTripsCellName(string cell, int column, int row)
+        {
+            Assert.IsTrue(MapCsvParser.TryParseCellName(cell, out int parsedColumn, out int parsedRow));
+            Assert.AreEqual(column, parsedColumn);
+            Assert.AreEqual(row, parsedRow);
+            Assert.AreEqual(cell.ToUpperInvariant(), MapCsvParser.CellName(parsedColumn, parsedRow));
+        }
+
+        [TestCase(null)]
+        [TestCase("")]
+        [TestCase("A")]
+        [TestCase("1")]
+        [TestCase("A0")]
+        [TestCase("1A")]
+        [TestCase("A-1")]
+        [TestCase("A 1")]
+        [TestCase("É1")]
+        [TestCase("ZZZZ1")]
+        [TestCase("A99999999999")]
+        public void TryParseCellName_Invalid(string cell)
+        {
+            Assert.IsFalse(MapCsvParser.TryParseCellName(cell, out _, out _));
+        }
+
+        [Test]
+        public void SheetRowToZ_FirstRowIsFarEdge()
+        {
+            Assert.AreEqual(9, MapCsvParser.SheetRowToZ(0, 10));
+            Assert.AreEqual(0, MapCsvParser.SheetRowToZ(9, 10));
+        }
     }
 }

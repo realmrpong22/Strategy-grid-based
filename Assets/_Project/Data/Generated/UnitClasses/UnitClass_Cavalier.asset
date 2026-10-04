@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f80201206196b2f47b494d5fc6a812ec, type: 3}
+  m_Name: UnitClass_Cavalier
+  m_EditorClassIdentifier: Tactics.Data::Tactics.Data.UnitClassData
+  _id: Cavalier
+  _displayName: Cavalier
+  _maxHp: 22
+  _move: 7
+  _jump: 1
+  _flies: 0
+  _color: {r: 0.6901961, g: 0.47843137, b: 0.2901961, a: 1}

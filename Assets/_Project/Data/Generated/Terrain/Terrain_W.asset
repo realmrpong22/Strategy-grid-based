@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Tactics.Data::Tactics.Data.TerrainTypeData
   _id: W
   _displayName: Water
-  _moveCost: 0
+  _moveCost: 1
   _isPassable: 0
+  _isFlyable: 1
   _defenseBonus: 0
   _avoidBonus: 0
   _color: {r: 0.23921569, g: 0.4862745, b: 0.7882353, a: 1}

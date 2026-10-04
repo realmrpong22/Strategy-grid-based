@@ -15,9 +15,9 @@ namespace Tactics.Tests.EditMode
         public void SetUp()
         {
             _plain = ScriptableObject.CreateInstance<TerrainTypeData>();
-            _plain.SetValues("P", "Plain", 1, true, 0, 0, Color.green);
+            _plain.SetValues("P", "Plain", 1, true, true, 0, 0, Color.green);
             _forest = ScriptableObject.CreateInstance<TerrainTypeData>();
-            _forest.SetValues("F", "Forest", 2, true, 1, 20, Color.black);
+            _forest.SetValues("F", "Forest", 2, true, true, 1, 20, Color.black);
             _map = ScriptableObject.CreateInstance<MapData>();
         }
 

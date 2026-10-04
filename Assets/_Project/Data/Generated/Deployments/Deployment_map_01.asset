@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbc18bb737e728e4bbe0e89a10647eea, type: 3}
+  m_Name: Deployment_map_01
+  m_EditorClassIdentifier: Tactics.Data::Tactics.Data.DeploymentData
+  _map: {fileID: 11400000, guid: ce3d316724d1bd146bd03f5c00b324e5, type: 2}
+  _units:
+  - _unitClass: {fileID: 11400000, guid: 9e0703589ce65b54ba26c16e1cc9492b, type: 2}
+    _faction: 0
+    _position: {x: 4, y: 0}
+  - _unitClass: {fileID: 11400000, guid: f40e59c72bd0f8c42b189f0915961028, type: 2}
+    _faction: 0
+    _position: {x: 5, y: 1}
+  - _unitClass: {fileID: 11400000, guid: 07b7e2eddd291af4483e18c39ddb230b, type: 2}
+    _faction: 0
+    _position: {x: 6, y: 0}
+  - _unitClass: {fileID: 11400000, guid: 2aae129818e13f740931df38c324ebbc, type: 2}
+    _faction: 0
+    _position: {x: 3, y: 1}
+  - _unitClass: {fileID: 11400000, guid: 9e0703589ce65b54ba26c16e1cc9492b, type: 2}
+    _faction: 1
+    _position: {x: 5, y: 9}
+  - _unitClass: {fileID: 11400000, guid: 9e0703589ce65b54ba26c16e1cc9492b, type: 2}
+    _faction: 1
+    _position: {x: 7, y: 8}
+  - _unitClass: {fileID: 11400000, guid: 07b7e2eddd291af4483e18c39ddb230b, type: 2}
+    _faction: 1
+    _position: {x: 4, y: 8}
+  - _unitClass: {fileID: 11400000, guid: f40e59c72bd0f8c42b189f0915961028, type: 2}
+    _faction: 1
+    _position: {x: 6, y: 9}
+  - _unitClass: {fileID: 11400000, guid: 2aae129818e13f740931df38c324ebbc, type: 2}
+    _faction: 1
+    _position: {x: 8, y: 6}

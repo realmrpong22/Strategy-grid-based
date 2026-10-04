@@ -1,31 +1,36 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Tactics.View
 {
     /// <summary>
-    /// Shows hover and selection on tiles by listening to GridPointer.
-    /// Selection lives here only for Week 1; in Week 2 a battle controller owns "what is selected"
-    /// and this class just displays it.
+    /// Display only: draws hover (from GridPointer) plus the selected tile and range (from SelectionController).
+    /// Priority per tile: Selected, then Hover, then range.
     /// </summary>
     public sealed class TileHighlighter : MonoBehaviour
     {
         [SerializeField] private GridPointer _pointer;
+        [SerializeField] private SelectionController _selection;
+        [SerializeField] private GridView _gridView;
 
         private TileView _hovered;
         private TileView _selected;
+        private HashSet<TileView> _range = new HashSet<TileView>();
+        private HashSet<TileView> _previousRange = new HashSet<TileView>();
+        private TileHighlight _rangeHighlight;
 
         private void OnEnable()
         {
             _pointer.HoveredTileChanged += OnHoveredTileChanged;
-            _pointer.TileSelected += OnTileSelected;
-            _pointer.Cancelled += OnCancelled;
+            _selection.SelectedTileChanged += OnSelectedTileChanged;
+            _selection.RangeChanged += OnRangeChanged;
         }
 
         private void OnDisable()
         {
             _pointer.HoveredTileChanged -= OnHoveredTileChanged;
-            _pointer.TileSelected -= OnTileSelected;
-            _pointer.Cancelled -= OnCancelled;
+            _selection.SelectedTileChanged -= OnSelectedTileChanged;
+            _selection.RangeChanged -= OnRangeChanged;
         }
 
         private void OnHoveredTileChanged(TileView tile)
@@ -36,23 +41,34 @@ namespace Tactics.View
             Refresh(_hovered);
         }
 
-        // Clicking the selected tile again deselects it.
-        private void OnTileSelected(TileView tile)
+        private void OnSelectedTileChanged(Vector2Int? position)
         {
             TileView previous = _selected;
-            _selected = tile == _selected ? null : tile;
+            _selected = position.HasValue && _gridView.TryGetTileView(position.Value, out TileView view) ? view : null;
             Refresh(previous);
-            Refresh(tile);
+            Refresh(_selected);
         }
 
-        private void OnCancelled()
+        private void OnRangeChanged(IReadOnlyList<Vector2Int> tiles, TileHighlight highlight)
         {
-            TileView previous = _selected;
-            _selected = null;
-            Refresh(previous);
+            // Swap sets so the old range can be refreshed (cleared) without allocating.
+            (_previousRange, _range) = (_range, _previousRange);
+            _range.Clear();
+            _rangeHighlight = highlight;
+
+            foreach (Vector2Int position in tiles)
+            {
+                if (_gridView.TryGetTileView(position, out TileView view))
+                    _range.Add(view);
+            }
+
+            foreach (TileView tile in _previousRange)
+                Refresh(tile);
+            foreach (TileView tile in _range)
+                Refresh(tile);
+            _previousRange.Clear();
         }
 
-        /// <summary>Selected wins over hover, so the selection stays visible under the pointer.</summary>
         private void Refresh(TileView tile)
         {
             if (tile == null)
@@ -62,6 +78,8 @@ namespace Tactics.View
                 tile.SetHighlight(TileHighlight.Selected);
             else if (tile == _hovered)
                 tile.SetHighlight(TileHighlight.Hover);
+            else if (_range.Contains(tile))
+                tile.SetHighlight(_rangeHighlight);
             else
                 tile.SetHighlight(TileHighlight.None);
         }

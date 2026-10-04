@@ -16,6 +16,7 @@ MonoBehaviour:
   _displayName: Plain
   _moveCost: 1
   _isPassable: 1
+  _isFlyable: 1
   _defenseBonus: 0
   _avoidBonus: 0
   _color: {r: 0.5529412, g: 0.7019608, b: 0.3764706, a: 1}

@@ -102,7 +102,7 @@ namespace Tactics.Tests.EditMode
         [Test]
         public void Build_DuplicateTerrainIds_Fails()
         {
-            var plainCopy = new TerrainDefinition("P", 3, true, 0, 0);
+            var plainCopy = new TerrainDefinition("P", 3, true, true, 0, 0);
 
             GridBuildResult result = GridMapBuilder.Build(
                 1, 1, new[] { "P" }, new[] { 0 }, new[] { TestGrids.Plain, plainCopy });
